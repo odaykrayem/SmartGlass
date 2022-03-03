@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
         list = new ArrayList<Sentence>();
 
+        prefManager = SharedPrefManager.getInstance(this);
 
         reportingScreen = findViewById(R.id.reports);
 
@@ -84,7 +85,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
+        getData.cancel();
+        informBlind.cancel();
         if(speaker !=null){
             speaker.stop();
             speaker.shutdown();
@@ -180,8 +182,16 @@ public class MainActivity extends AppCompatActivity {
     private void informBlind() {
         if(!list.isEmpty()) {
             ttsMessage = list.get(0).getMessage();
-            speaker.speak(ttsMessage, TextToSpeech.QUEUE_FLUSH, null);
-            editStatus(list.get(0).getId());
+            if(ttsMessage.split(" ").length > 3){
+                try {
+                    informBlind.wait((ttsMessage.split(" ").length - 3) * 300);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                speaker.speak(ttsMessage, TextToSpeech.QUEUE_FLUSH, null);
+                editStatus(list.get(0).getId());
+
+            }
             list.remove(0);
         }
     }
