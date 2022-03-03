@@ -4,20 +4,39 @@ public class User {
 
     //all users have:
     private int id;
-    private int smartGlassId;
-    private String fname;
-    private String lname;
+//    private int smartGlassId;
+    private String name;
+    private String email;
 
 
-    //manager register result
-    public User(int id, int smartGlassId, String fname, String lname) {
+    public User(int id, int smartGlassId, String name, String email) {
         this.id = id;
-        this.smartGlassId = smartGlassId;
-        this.fname = fname;
-        this.lname = lname;
-
+//        this.smartGlassId = smartGlassId;
+        this.name = name;
+        this.email = email;
     }
 
+    public User(int id, String name, String email) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public int getId() {
         return id;
@@ -27,29 +46,13 @@ public class User {
         this.id = id;
     }
 
-    public int getSmartGlassId() {
-        return smartGlassId;
-    }
+//    public int getSmartGlassId() {
+//        return smartGlassId;
+//    }
+//
+//    public void setSmartGlassId(int smartGlassId) {
+//        this.smartGlassId = smartGlassId;
+//    }
 
-    public void setSmartGlassId(int smartGlassId) {
-        this.smartGlassId = smartGlassId;
-    }
-
-    public String getFname() {
-        return fname;
-    }
-
-    public void setFname(String fname) {
-        this.fname = fname;
-    }
-
-
-    public String getLname() {
-        return lname;
-    }
-
-    public void setLname(String lname) {
-        this.lname = lname;
-    }
 
 }
