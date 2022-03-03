@@ -6,6 +6,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -51,7 +52,6 @@ public class LoginActivity extends AppCompatActivity {
             if(validateUserData()){
                 userLogin();
             }
-            goToMainActivity();
         });
 
 
@@ -122,6 +122,8 @@ public class LoginActivity extends AppCompatActivity {
                         } catch (JSONException e) {
                             mLoginBtn.setEnabled(true);
                             e.printStackTrace();
+                            Log.e("login catch", e.getMessage());
+
                         }
 
                     }
@@ -131,6 +133,7 @@ public class LoginActivity extends AppCompatActivity {
                         pDialog.dismiss();
                         mLoginBtn.setEnabled(true);
                         Toast.makeText(LoginActivity.this, anError.getMessage(), Toast.LENGTH_SHORT).show();
+                        Log.e("login", anError.getMessage());
                     }
                 });
 //
