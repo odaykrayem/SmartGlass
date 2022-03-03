@@ -15,7 +15,6 @@ public class RegisterActivity extends AppCompatActivity {
     EditText mFnameEt, mLnameEt, mGlassId, mPasswordET;
     Button mRegisterBtn;
     TextView mSignUpLoginBtn;
-    TextView mAboutUsBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +35,6 @@ public class RegisterActivity extends AppCompatActivity {
 //            }
         });
 
-        mAboutUsBtn.setOnClickListener(v -> startActivity(new Intent(this, AboutUsActivity.class)));
 
     }
 
@@ -47,7 +45,6 @@ public class RegisterActivity extends AppCompatActivity {
         mPasswordET = findViewById(R.id.password);
         mRegisterBtn = findViewById(R.id.register_btn);
         mSignUpLoginBtn = findViewById(R.id.signup_login_btn);
-        mAboutUsBtn = findViewById(R.id.about_btn);
     }
 
     private boolean validateUserData() {

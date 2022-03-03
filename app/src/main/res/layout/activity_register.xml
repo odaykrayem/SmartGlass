@@ -167,15 +167,5 @@
 
     </ScrollView>
 
-    <TextView
-        android:id="@+id/about_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="30dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:textColor="@color/app_bg_dark"
-        android:text="@string/about_us_title"/>
+
 </RelativeLayout>
