@@ -79,14 +79,14 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/signup_text_margin_top">
                             <EditText
-                                android:id="@+id/f_name"
+                                android:id="@+id/name"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:textSize="@dimen/newsMoreTextSize"
                                 android:backgroundTint="@android:color/white"
                                 android:inputType="textPersonName"
                                 android:maxLines="1"
-                                android:hint="@string/f_name"/>
+                                android:hint="@string/name"/>
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
@@ -94,29 +94,13 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/signup_text_margin_top">
                             <EditText
-                                android:id="@+id/l_name"
+                                android:id="@+id/email"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:textSize="@dimen/newsMoreTextSize"
                                 android:backgroundTint="@android:color/white"
-                                android:inputType="textPersonName"
                                 android:maxLines="1"
-                                android:hint="@string/l_name"/>
-                        </com.google.android.material.textfield.TextInputLayout>
-
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/signup_text_margin_top">
-                            <EditText
-                                android:id="@+id/glass_id"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:textSize="@dimen/newsMoreTextSize"
-                                android:backgroundTint="@android:color/white"
-                                android:inputType="number"
-                                android:maxLines="1"
-                                android:hint="@string/glass_id"/>
+                                android:hint="@string/hint_email"/>
                         </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -166,6 +150,5 @@
         </RelativeLayout>
 
     </ScrollView>
-
 
 </RelativeLayout>

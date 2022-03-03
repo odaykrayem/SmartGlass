@@ -13,7 +13,7 @@
     <string name="login">Login</string>
     <string name="about_us_title">About us</string>
 
-    <!--    gps location related...-->
+<!--    gps location related...-->
     <string name="gps_settings_message">GPS is not enabled. Do you want to go to settings menu?</string>
     <string name="gps_settings_title">GPS Settings</string>
     <string name="settings">Settings</string>
@@ -24,4 +24,5 @@
     <string name="l_name">Last Name</string>
     <string name="waiting_for_commands">Waiting for commands</string>
     <string name="title_activity_map">Map</string>
+    <string name="name">Full Name</string>
 </resources>
