@@ -52,9 +52,6 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-    private void bindViews() {
-
-    }
 
     private boolean validateUserData() {
 
@@ -115,6 +112,8 @@ public class RegisterActivity extends AppCompatActivity {
                                 String  name = response.getString("name");
                                 User user = new User(id, name , email);
 
+                                String message = response.getString("message");
+                                Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();
                                 SharedPrefManager.getInstance(RegisterActivity.this).userLogin(user);
                                 goToMainActivity();
                                 finish();

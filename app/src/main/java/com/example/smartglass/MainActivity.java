@@ -2,6 +2,7 @@ package com.example.smartglass;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.speech.tts.TextToSpeech;
@@ -24,6 +25,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import com.example.smartglass.utils.SharedPrefManager;
+
 import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -33,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     TextToSpeech speaker;
     String ttsMessage = null;
 
-    TextView reportingScreen;
+    TextView reportingScreen, idTV;
 
     Timer getData, informBlind;
 
@@ -51,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         reportingScreen = findViewById(R.id.reports);
+        idTV = findViewById(R.id.user_id);
+        idTV.setText(String.valueOf(SharedPrefManager.getInstance(this).getUserId()));
 
         speaker = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override

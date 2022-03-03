@@ -138,6 +138,50 @@ public class LoginActivity extends AppCompatActivity {
                 });
 //
     }
+    private void editStatus() {
+
+        final ProgressDialog pDialog = new ProgressDialog(this);
+        pDialog.setMessage("Processing Please wait...");
+        pDialog.show();
+
+        String sentenceId = "";
+
+        AndroidNetworking.post(Urls.EDIT_STATUS_URL)
+                .addBodyParameter("sentence_id", sentenceId)
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        // do anything with response
+                        pDialog.dismiss();
+                        try {
+                            //converting response to json object
+                            if(response.getInt("status") == 1){
+                                String message = response.getString("message");
+                                Toast.makeText(LoginActivity.this, message, Toast.LENGTH_LONG).show();
+
+                            } else if(response.getInt("status") == 0){
+                                Toast.makeText(LoginActivity.this, response.getString("message"), Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Log.e("edit status ", e.getMessage());
+
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        pDialog.dismiss();
+                        mLoginBtn.setEnabled(true);
+                        Toast.makeText(LoginActivity.this, anError.getMessage(), Toast.LENGTH_SHORT).show();
+                        Log.e("edit status", anError.getMessage());
+                    }
+                });
+//
+    }
 
     private void goToMainActivity() {
         startActivity(new Intent(this, MainActivity.class));
