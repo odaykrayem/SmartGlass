@@ -2,9 +2,7 @@ package com.example.smartglass;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.widget.TextView;
@@ -15,17 +13,13 @@ import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.example.smartglass.model.Sentence;
-import com.example.smartglass.model.User;
 import com.example.smartglass.utils.SharedPrefManager;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import com.example.smartglass.utils.SharedPrefManager;
 
 import java.util.Locale;
 import java.util.Timer;

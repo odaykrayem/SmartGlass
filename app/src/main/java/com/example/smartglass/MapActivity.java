@@ -23,6 +23,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Map;
+import java.util.Timer;
 import java.util.TimerTask;
 
 public class MapActivity extends FragmentActivity implements OnMapReadyCallback {
@@ -30,6 +31,8 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
     private GoogleMap mMap;
 
     SharedPrefManager prefManager;
+
+    Timer timer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,9 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        timer = new Timer();
+        timer.schedule(new GetData(), 5000, 3000);
     }
 
     /**
@@ -56,7 +62,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
+        getPatientLocation(prefManager.getUserId());
     }
 
     class GetData extends TimerTask {
