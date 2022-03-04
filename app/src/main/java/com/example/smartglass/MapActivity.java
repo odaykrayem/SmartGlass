@@ -72,7 +72,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
     }
 
     private void getPatientLocation(int userId) {
-        AndroidNetworking.post(Urls.LOGIN_URL)
+        AndroidNetworking.post(Urls.PATIENT_LOCATION)
                 .addBodyParameter("patient_id", String.valueOf(userId))
                 .setPriority(Priority.MEDIUM)
                 .build()

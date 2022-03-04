@@ -2,6 +2,7 @@ package com.example.smartglass;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     TextToSpeech speaker;
     String ttsMessage = null;
 
-    TextView reportingScreen, idTV;
+    TextView reportingScreen, idTV, openMap;
 
     Timer getData, informBlind;
 
@@ -47,6 +48,11 @@ public class MainActivity extends AppCompatActivity {
         list = new ArrayList<Sentence>();
 
         prefManager = SharedPrefManager.getInstance(this);
+        openMap = findViewById(R.id.open_map);
+
+        openMap.setOnClickListener(v -> {
+            startActivity(new Intent(this, MapActivity.class));
+        });
 
         reportingScreen = findViewById(R.id.reports);
         idTV = findViewById(R.id.user_id);

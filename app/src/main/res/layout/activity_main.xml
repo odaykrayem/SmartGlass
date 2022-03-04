@@ -11,7 +11,7 @@
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="22sp"
+        android:textSize="18sp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="22dp"
         android:text="@string/waiting_for_commands"
@@ -31,15 +31,29 @@
         android:textSize="18sp"/>
     <TextView
         android:id="@+id/user_id"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_centerInParent="true"
-        android:background="@drawable/bg_id"
-        android:textSize="60sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:textSize="40sp"
+        android:layout_margin="16dp"
         android:textColor="@color/colorAccent"
         android:text="12"
         android:gravity="center"
         android:alpha="0.4"
+        />
+
+    <TextView
+        android:id="@+id/open_map"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:textSize="18sp"
+        android:layout_margin="16dp"
+        android:textColor="@color/colorAccent"
+        android:text="location"
+        android:gravity="center"
         />
 
 
