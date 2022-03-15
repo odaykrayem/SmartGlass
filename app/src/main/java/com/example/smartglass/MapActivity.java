@@ -2,6 +2,7 @@ package com.example.smartglass;
 
 import androidx.fragment.app.FragmentActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -71,8 +72,15 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
         }
     }
 
+    @Override
+    public void onBackPressed() {
+       startActivity(new Intent(this, MainActivity.class));
+        finish();
+        super.onBackPressed();
+    }
+
     private void getPatientLocation(int userId) {
-        AndroidNetworking.post(Urls.PATIENT_LOCATION)
+        AndroidNetworking.post(Urls.GET_LOCATION_URL)
                 .addBodyParameter("patient_id", String.valueOf(userId))
                 .setPriority(Priority.MEDIUM)
                 .build()
@@ -90,9 +98,9 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
                                 mMap.addMarker(new MarkerOptions().position(blindLocation).title("blind is here!"));
                                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(blindLocation, 15f));
 
-
                             } else if(response.getInt("status") == 0){
                                 Toast.makeText(MapActivity.this, response.getString("message"), Toast.LENGTH_SHORT).show();
+
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

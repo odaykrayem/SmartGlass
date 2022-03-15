@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
         openMap.setOnClickListener(v -> {
             startActivity(new Intent(this, MapActivity.class));
+            finish();
         });
 
         reportingScreen = findViewById(R.id.reports);
@@ -63,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
             public void onInit(int status) {
                 if(status != TextToSpeech.ERROR) {
                     speaker.setLanguage(Locale.US);
+                    speaker.setPitch(0.5f);
+                    speaker.setSpeechRate(0.6f);
                 }
             }
         });
@@ -100,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
 
     //todo api call get last update from data base to inform the blind of his situation
     void getSceneDescription(int glassId){
-        AndroidNetworking.post(Urls.LOGIN_URL)
+        AndroidNetworking.post(Urls.GET_SENTENCES_URL)
                 .addBodyParameter("patient_id", String.valueOf(glassId))
                 .setPriority(Priority.MEDIUM)
                 .build()
@@ -119,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
                                             item.getString("sentence")
                                     );
                                     list.add(sentence);
-                                    reportingScreen.append(sentence.getMessage());
+                                    reportingScreen.append(sentence.getMessage() + "\n" + "\n");
                                 }
 
 
@@ -129,6 +132,7 @@ public class MainActivity extends AppCompatActivity {
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
+                            Log.e("amn catch", e.getMessage() );
                         }
 
                     }
@@ -136,14 +140,13 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onError(ANError anError) {
                         Toast.makeText(MainActivity.this, anError.getMessage(), Toast.LENGTH_SHORT).show();
+                        Log.e("main", anError.getMessage());
                     }
                 });
     }
 
 
     private void editStatus(int sentenceId) {
-
-
         AndroidNetworking.post(Urls.EDIT_STATUS_URL)
                 .addBodyParameter("sentence_id", String.valueOf(sentenceId))
                 .setPriority(Priority.MEDIUM)
@@ -151,7 +154,6 @@ public class MainActivity extends AppCompatActivity {
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        // do anything with response
                         try {
                             //converting response to json object
                             if(response.getInt("status") == 1){
@@ -164,18 +166,14 @@ public class MainActivity extends AppCompatActivity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Log.e("edit status ", e.getMessage());
-
                         }
-
                     }
-
                     @Override
                     public void onError(ANError anError) {
                         Toast.makeText(MainActivity.this, anError.getMessage(), Toast.LENGTH_SHORT).show();
                         Log.e("edit status", anError.getMessage());
                     }
                 });
-//
     }
 
     class InformBlind extends TimerTask {
@@ -195,6 +193,7 @@ public class MainActivity extends AppCompatActivity {
 
     class GetData extends TimerTask {
         public void run() {
+            prefManager = SharedPrefManager.getInstance(MainActivity.this);
             getSceneDescription(prefManager.getUserId());
         }
     }

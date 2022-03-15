@@ -43,7 +43,6 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
         mRegisterBtn.setOnClickListener(v -> {
-            goToMainActivity();
             mRegisterBtn.setEnabled(false);
             if(validateUserData()){
                 registerUser();
@@ -106,6 +105,8 @@ public class RegisterActivity extends AppCompatActivity {
                         // do anything with response
                         pDialog.dismiss();
                         try {
+                            Log.e("register", response.toString());
+
                             //converting response to json object
                             if(response.getInt("status") == 1){
                                 int  id = Integer.parseInt(response.getString("id"));
@@ -116,6 +117,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 String message = response.getString("message");
                                 Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();
                                 SharedPrefManager.getInstance(RegisterActivity.this).userLogin(user);
+                                pDialog.dismiss();
                                 goToMainActivity();
                                 finish();
                                 mRegisterBtn.setEnabled(true);
@@ -123,6 +125,7 @@ public class RegisterActivity extends AppCompatActivity {
                             } else if(response.getInt("status") == 0){
                                 Toast.makeText(RegisterActivity.this, response.getString("message"), Toast.LENGTH_SHORT).show();
                                 mRegisterBtn.setEnabled(true);
+                                pDialog.dismiss();
                             }
                         } catch (JSONException e) {
                             mRegisterBtn.setEnabled(true);
