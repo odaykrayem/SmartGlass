@@ -69,10 +69,10 @@ public class MainActivity extends AppCompatActivity {
 
         // And From your main() method or any other method
         getData = new Timer();
-        getData.schedule(new GetData(), 1000, 2000);
+        getData.schedule(new GetData(), 1000, 5000);
 
         informBlind = new Timer();
-        informBlind.schedule(new InformBlind(), 1000, 1500);
+        informBlind.schedule(new InformBlind(), 2000, 5000);
 
 
 
@@ -187,16 +187,8 @@ public class MainActivity extends AppCompatActivity {
     private void informBlind() {
         if(!list.isEmpty()) {
             ttsMessage = list.get(0).getMessage();
-            if(ttsMessage.split(" ").length > 3){
-                try {
-                    informBlind.wait((ttsMessage.split(" ").length - 3) * 300);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                speaker.speak(ttsMessage, TextToSpeech.QUEUE_FLUSH, null);
-                editStatus(list.get(0).getId());
-
-            }
+            speaker.speak(ttsMessage, TextToSpeech.QUEUE_FLUSH, null);
+            editStatus(list.get(0).getId());
             list.remove(0);
         }
     }

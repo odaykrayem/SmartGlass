@@ -27,6 +27,7 @@ public class RegisterActivity extends AppCompatActivity {
     EditText mNameET, mEmailET, mPasswordET;
     Button mRegisterBtn;
     TextView mSignUpLoginBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -146,4 +147,5 @@ public class RegisterActivity extends AppCompatActivity {
     private void goToMainActivity() {
         startActivity(new Intent(this, MainActivity.class));
     }
+
 }
