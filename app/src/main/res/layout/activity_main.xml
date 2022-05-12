@@ -23,12 +23,23 @@
     <TextView
         android:id="@+id/reports"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:layout_below="@id/title"
         android:padding="16dp"
         android:background="@drawable/reporting_screen_bg"
-        android:textSize="18sp"/>
+        android:textSize="18sp"
+        android:layout_above="@id/logout"
+        />
+
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/logout"
+        android:layout_alignParentBottom="true"
+        />
+
     <TextView
         android:id="@+id/user_id"
         android:layout_width="wrap_content"
@@ -55,6 +66,5 @@
         android:text="location"
         android:gravity="center"
         />
-
 
 </RelativeLayout>

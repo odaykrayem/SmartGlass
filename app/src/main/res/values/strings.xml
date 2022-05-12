@@ -25,4 +25,5 @@
     <string name="waiting_for_commands">Waiting for commands</string>
     <string name="title_activity_map">Map</string>
     <string name="name">Full Name</string>
+    <string name="logout">Logout</string>
 </resources>

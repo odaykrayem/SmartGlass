@@ -24,7 +24,7 @@ import org.json.JSONObject;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    EditText mNameET, mEmailET, mPasswordET;
+    EditText mNameET, mEmailET, mPasswordET, mGlassId;
     Button mRegisterBtn;
     TextView mSignUpLoginBtn;
 
@@ -37,6 +37,7 @@ public class RegisterActivity extends AppCompatActivity {
         mNameET = findViewById(R.id.name);
         mEmailET = findViewById(R.id.email);
         mRegisterBtn = findViewById(R.id.register_btn);
+        mGlassId = findViewById(R.id.glass_id);
         mSignUpLoginBtn = findViewById(R.id.signup_login_btn);
         mSignUpLoginBtn.setOnClickListener(v -> {
             finish();
@@ -59,7 +60,13 @@ public class RegisterActivity extends AppCompatActivity {
         final String pass = mPasswordET.getText().toString();
         final String name = mNameET.getText().toString();
         final String email = mEmailET.getText().toString();
+        final String glassId = mGlassId.getText().toString();
 
+        if (TextUtils.isEmpty(glassId)) {
+            Toast.makeText(this, getResources().getString(R.string.all_fields_are_required), Toast.LENGTH_SHORT).show();
+            mRegisterBtn.setEnabled(true);
+            return false;
+        }
         if (TextUtils.isEmpty(name)) {
             Toast.makeText(this, getResources().getString(R.string.all_fields_are_required), Toast.LENGTH_SHORT).show();
             mRegisterBtn.setEnabled(true);
@@ -92,9 +99,11 @@ public class RegisterActivity extends AppCompatActivity {
         final String email = mEmailET.getText().toString();
         final String pass = mPasswordET.getText().toString();
         final String name = mNameET.getText().toString();
+        final String glassId = mGlassId.getText().toString();
 
         AndroidNetworking.post(Urls.REGISTER_URL)
                 .addBodyParameter("email", email)
+                .addBodyParameter("glass_id", glassId)
                 .addBodyParameter("name", name)
                 .addBodyParameter("password", pass)
                 .setPriority(Priority.MEDIUM)

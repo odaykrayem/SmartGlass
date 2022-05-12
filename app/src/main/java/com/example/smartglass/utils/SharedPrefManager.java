@@ -55,11 +55,6 @@ public class SharedPrefManager {
     }
 
 
-    public int getGlassID() {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        return sharedPreferences.getInt(KEY_SMART_GLASS_ID, -1);
-    }
-
 
     //this method will give the logged in user
     public User getUserData() {

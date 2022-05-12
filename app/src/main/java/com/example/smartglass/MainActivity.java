@@ -3,8 +3,10 @@ package com.example.smartglass;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
+import android.speech.tts.Voice;
 import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -68,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
                     speaker.setSpeechRate(0.6f);
                 }
             }
+
         });
 
         // And From your main() method or any other method
@@ -197,6 +200,21 @@ public class MainActivity extends AppCompatActivity {
             getSceneDescription(prefManager.getUserId());
         }
     }
+    private class TTSInit extends AsyncTask<Void, Void, Void> {
 
+        @Override
+        protected Void doInBackground(Void... voids) {
+            speaker=new TextToSpeech(MainActivity.this, status -> {
+                if (status == TextToSpeech.SUCCESS) {
+                    speaker.setLanguage(Locale.ENGLISH);
+                    speaker.setPitch(0.5f);
+                    speaker.setSpeechRate(0.6f);
+                    /* now you can invoke speak() */
+                    informBlind();
+                }
+            });
+            return null;
+        }
+    }
 
 }
